@@ -65,6 +65,13 @@ Detailed description of the underlying rules [here](https://google.com/)
 </span>
 <br/>
 
+# Install Repository
+Install inside of a virtual environment (recommended)
+```bash
+pip install --upgrade pip
+git clone https://github.com/daniel-bogdoll/actual_road_user_behavior.git
+pip install -r requirements.txt
+```
 # Distance Keeping
 For extracting the distance slack run:
 ```bash
