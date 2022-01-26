@@ -1,0 +1,14 @@
+*.ipynb_checkpoints
+__pycache__
+data/dataset/*/
+!data/.gitkeep
+!data/results/.gitkeep
+!data/dataset/.gitkeep
+!data/sample_plots/.gitkeep
+data/results/*/
+data/sample_plots/*/
+*.xml
+.nfs*
+notebooks/*
+*.mp4
+
