@@ -638,11 +638,11 @@ class DistanceRule:
                 car = state[x]
                 if len(car) > 1:
                     box = np.array(car).T
-                    # print scores attached to cars
-                    if not np.isnan(state_scenario_score[x][index]):
-                        simulation.text(box[0][0], box[1][0], s=str(int(state_scenario_score[x][index] * 10000)/ 10000.0))
-                    else:
-                        simulation.text(box[0][0], box[1][0], s="nan")
+                    # # print scores attached to cars
+                    # if not np.isnan(state_scenario_score[x][index]):
+                    #     simulation.text(box[0][0], box[1][0], s=str(int(state_scenario_score[x][index] * 10000)/ 10000.0))
+                    # else:
+                    #     simulation.text(box[0][0], box[1][0], s="nan")
                     if x == focus_index:
                         simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#DC267F", linewidth=1.3)
                     else:
@@ -680,12 +680,12 @@ class DistanceRule:
             simulation.axes.get_yaxis().set_ticklabels([])
 
             legend_elements = [Line2D([0], [0], color='#785EF0', label='Position in ' + str(self.latency) + "s", lw=1.5),
-                            # Line2D([0], [0], color='#DC267F', label='Violation', lw=1.5),
-                            # Patch(facecolor='white', edgecolor='#DC267F', label='Worst Driver', lw=1.5)
-                            Rectangle((0,0),width=2,height=50,color='#648FFF', label=r"$\varphi_1$" + " Distance Keeping"),
-                            Rectangle((0,0),width=2,height=50,color='#FFB000', label=r"$\varphi_2$" + " Speed Limiting")
+                            Line2D([0], [0], color='#DC267F', label='Violation', lw=1.5),
+                            Patch(facecolor='white', edgecolor='#DC267F', label='Worst Driver', lw=1.5)
+                            # Rectangle((0,0),width=2,height=50,color='#648FFF', label=r"$\varphi_1$" + " Distance Keeping"),
+                            # Rectangle((0,0),width=2,height=50,color='#FFB000', label=r"$\varphi_2$" + " Speed Limiting")
                             ]
-            # simulation.legend(handles=legend_elements, loc="upper left", prop={'size': 13})
+            simulation.legend(handles=legend_elements, loc="upper left", prop={'size': 13})
             
 
             fig.savefig("test" + str(index) + ".svg", bbox_inches='tight', pad_inches = 0)

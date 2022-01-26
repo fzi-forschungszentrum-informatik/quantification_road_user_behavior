@@ -23,8 +23,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 
   <summary>Statistics</summary>
-<img width=300 src="./media/Distribution.svg">
-<img width=300  src="./media/sb_probability.svg">
+<img width=2000 src="./media/eval_dist.png">
 </details>
 
 <details>
@@ -51,8 +50,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 
   <summary>Statistics</summary>
-<img width=300 src="./media/speed_hist.svg">
-<img width=300  src="./media/speed_hist_prob.svg">
+<img width=2000 src="./media/eval_speed.png">
 </details>
 
 <details>
