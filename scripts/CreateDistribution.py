@@ -105,7 +105,7 @@ class CreateDistribution(object):
         slack_list = np.array(slack_list).astype("float32")
         slack_no_one = np.array(slack_no_one).astype("float32")
 
-        n, bins, patches = plt.hist(x=slack_list, bins=40, log=log, color='#0504aa',
+        n, bins, patches = plt.hist(x=slack_list, bins=20, log=log, color='#0504aa',
                                     alpha=0.7, rwidth=0.85)
 
         plt.title(self.name + " Rule")
@@ -119,7 +119,7 @@ class CreateDistribution(object):
 
         print("Showed first plot!")
         
-        n, bins, patches = plt.hist(x=slack_no_one, bins=40, log=log, color='#0504aa',
+        n, bins, patches = plt.hist(x=slack_no_one, bins=20, log=log, color='#0504aa',
                                     alpha=0.7, rwidth=0.85)
 
         plt.title(self.name + " Rule ex. score=1")
@@ -132,7 +132,7 @@ class CreateDistribution(object):
         plt.close()
 
 
-        n, bins, patches = plt.hist(x=slack_no_one, density=True, bins=40, log=log, color='#0504aa',
+        n, bins, patches = plt.hist(x=slack_no_one, density=True, bins=20, log=log, color='#0504aa',
                             alpha=0.7, rwidth=0.85)
 
         kde1 = stats.gaussian_kde(slack_no_one)
@@ -155,7 +155,7 @@ class CreateDistribution(object):
         plt.show(block=True)
         plt.close()
 
-        n, bins, patches = plt.hist(x=slack_list, density=True, bins=40, log=log, color='#0504aa',
+        n, bins, patches = plt.hist(x=slack_list, density=True, bins=20, log=log, color='#0504aa',
                     alpha=0.7, rwidth=0.85)
 
         kde1 = stats.gaussian_kde(slack_list)
@@ -178,14 +178,14 @@ class CreateDistribution(object):
         plt.show(block=True)
         plt.close()
 
-        sb.histplot(data=slack_list, log_scale=log, bins=40, kde=True, stat='probability')
+        sb.histplot(data=slack_list, log_scale=log, bins=20, kde=True, stat='probability')
         plt.title(self.name + " Rule")
         plt.savefig(path + "sb_probability.svg", bbox_inches='tight', pad_inches = 0)
         plt.xlabel("Slack value")
         plt.show(block=True)
         plt.close()
 
-        sb.histplot(data=slack_no_one, log_scale=log, kde=True, bins=40, stat='probability')
+        sb.histplot(data=slack_no_one, log_scale=log, kde=True, bins=20, stat='probability')
         plt.title(self.name + " Rule ex. score=1")
         plt.savefig(path + "sb_probability_no_one.svg", bbox_inches='tight', pad_inches = 0)
         plt.xlabel("Slack value")

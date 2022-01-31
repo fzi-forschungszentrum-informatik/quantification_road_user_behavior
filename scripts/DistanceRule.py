@@ -649,9 +649,9 @@ class DistanceRule:
                         simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#648FFF", linewidth=0.9)
 
             
-            for line in viol_list:
-                line = line.T
-                simulation.plot(line[0,:], line[1,:], linestyle="solid", color="#DC267F", lw=1.75)
+            # for line in viol_list:
+            #     line = line.T
+            #     simulation.plot(line[0,:], line[1,:], linestyle="solid", color="#DC267F", lw=1.75)
 
             if future:
                 for line in line_future:
@@ -659,13 +659,14 @@ class DistanceRule:
                     # simulation.plot(line[0,:], line[1,:], linestyle="solid", color="#DC267F", lw=0.75)
                     simulation.arrow(line[0][0], line[0][1], line[1][0] - line[0][0], line[1][1] - line[0][1], color="#785EF0", width=0.09, head_width= 2.*0.4, head_length=2.3*0.4)
 
-            # if plot_graph:
-            #     for lane in lane_graph:
-            #         polyline = lane[1][:,:2].T
-            #         simulation.plot(polyline[0,:], polyline[1,:], linestyle=(0, (40, 110)), color="k", lw=0.15)
-                for line in line_graph:
-                    polyline = line[1][:,:2].T
-                    simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.15)
+            if plot_graph:
+                for lane in lane_graph:
+                    polyline = lane[1][:,:2].T
+                    # simulation.plot(polyline[0,:], polyline[1,:], linestyle=(0, (40, 110)), color="k", lw=0.15)
+                    simulation.plot(polyline[0,:], polyline[1,:], linestyle="dotted", color="k", lw=0.15)
+                # for line in line_graph:
+                #     polyline = line[1][:,:2].T
+                #     simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.15)
                 # for edge in edge_graph:
                 #     polyline = edge[1][:,:2].T
                 #     simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.55)
@@ -673,6 +674,8 @@ class DistanceRule:
             
             x_pos = focus_p[0]
             y_pos = focus_p[1]
+            x_pos = 3369.0667
+            y_pos = 1542.3281
             simulation.set_xlim(x_pos - 50, x_pos + 50)
             simulation.set_ylim(y_pos - 50, y_pos + 50)
             # simulation.set_title("Rule: Distance Keeping")
@@ -681,10 +684,10 @@ class DistanceRule:
 
             legend_elements = [Line2D([0], [0], color='#785EF0', label='Position in ' + str(self.latency) + " s", lw=1.5),
                             Line2D([0], [0], color='#DC267F', label='Violation', lw=1.5),
-                            Line2D([0], [0], color='k', linestyle="solid", label='Lane', lw=1.)
-                            # Patch(facecolor='white', edgecolor='#DC267F', label='Worst Driver', lw=1.5)
-                            # Rectangle((0,0),width=2,height=50,color='#648FFF', label=r"$\varphi_1$" + " Distance Keeping"),
-                            # Rectangle((0,0),width=2,height=50,color='#FFB000', label=r"$\varphi_2$" + " Speed Limiting")
+                            Line2D([0], [0], color='k', linestyle="solid", label='Center line', lw=1.),
+                            Patch(facecolor='white', edgecolor='#DC267F', label='Worst Driver', lw=1.5)
+                            # Rectangle((0,0),width=2,height=50,color='#648FFF', label=r"$\varphi_1$" + " Safety Distance"),
+                            # Rectangle((0,0),width=2,height=50,color='#FFB000', label=r"$\varphi_2$" + " Speed Limit")
                             ]
             simulation.legend(handles=legend_elements, loc="upper left", prop={'size': 13})
             
