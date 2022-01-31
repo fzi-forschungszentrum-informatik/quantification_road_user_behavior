@@ -44,7 +44,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 <span style="font-size:larger;">
 
-📋 Speed Limitation: μ=0.96633 σ=0.077
+📋 Speed Limitation: μ=0.967 σ=0.077
 
 <details>
 
@@ -127,7 +127,7 @@ If you are using this Rule extractor for scientific research, we would be please
 
 ```latex
 @inproceedings{Rule extractor,
-  title     = {{Traffic rule extractor for Waymo Open Dataset Motion}},
+  title     = {{Quantification} {of} {Actual} {Road} {User} {Behavior} {on} {the} {Basis} {of} {Given} {Traffic} {Rules}},
   author    = {Moritz Nekolla and Daniel Bogdoll},
   year      = {2021},
   Url={http://google.com/}

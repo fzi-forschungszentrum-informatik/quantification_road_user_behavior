@@ -658,14 +658,14 @@ class DistanceRule:
                     # line = line.T
                     # simulation.plot(line[0,:], line[1,:], linestyle="solid", color="#DC267F", lw=0.75)
                     simulation.arrow(line[0][0], line[0][1], line[1][0] - line[0][0], line[1][1] - line[0][1], color="#785EF0", width=0.09, head_width= 2.*0.4, head_length=2.3*0.4)
-            
-            if plot_graph:
-                for lane in lane_graph:
-                    polyline = lane[1][:,:2].T
-                    simulation.plot(polyline[0,:], polyline[1,:], linestyle="dotted", color="k", lw=0.3)
-                # for line in line_graph:
-                #     polyline = line[1][:,:2].T
-                #     simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.15)
+
+            # if plot_graph:
+            #     for lane in lane_graph:
+            #         polyline = lane[1][:,:2].T
+            #         simulation.plot(polyline[0,:], polyline[1,:], linestyle=(0, (40, 110)), color="k", lw=0.15)
+                for line in line_graph:
+                    polyline = line[1][:,:2].T
+                    simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.15)
                 # for edge in edge_graph:
                 #     polyline = edge[1][:,:2].T
                 #     simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.55)
@@ -679,9 +679,10 @@ class DistanceRule:
             simulation.axes.get_xaxis().set_ticklabels([])
             simulation.axes.get_yaxis().set_ticklabels([])
 
-            legend_elements = [Line2D([0], [0], color='#785EF0', label='Position in ' + str(self.latency) + "s", lw=1.5),
+            legend_elements = [Line2D([0], [0], color='#785EF0', label='Position in ' + str(self.latency) + " s", lw=1.5),
                             Line2D([0], [0], color='#DC267F', label='Violation', lw=1.5),
-                            Patch(facecolor='white', edgecolor='#DC267F', label='Worst Driver', lw=1.5)
+                            Line2D([0], [0], color='k', linestyle="solid", label='Lane', lw=1.)
+                            # Patch(facecolor='white', edgecolor='#DC267F', label='Worst Driver', lw=1.5)
                             # Rectangle((0,0),width=2,height=50,color='#648FFF', label=r"$\varphi_1$" + " Distance Keeping"),
                             # Rectangle((0,0),width=2,height=50,color='#FFB000', label=r"$\varphi_2$" + " Speed Limiting")
                             ]
@@ -749,7 +750,7 @@ class DistanceRule:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", type=str, default="/disk/ml/datasets/waymo/motion/scenario/")
+    parser.add_argument("--path", type=str, default="/disk/ml/datasets/waymo/motion/scenario/training_20s/")
     parser.add_argument("--latency", type=float, default=3.0)
     parser.add_argument("--step_size", type=int, default=10)
     parser.add_argument("--min_speed", type=float, default=5.0)

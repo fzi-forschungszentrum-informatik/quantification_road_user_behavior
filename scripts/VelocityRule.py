@@ -55,6 +55,8 @@ class VelocityRule:
         self.wd_path = ""
         self.wd_id = None
         self.wd_score = 9999999
+
+        self.line_graph = None
    
     def get_root_path(self):
         return self.root_path
@@ -238,9 +240,9 @@ class VelocityRule:
         # state list of [car_center, velocity]
         state_list = self.formatVelocity(all_state_list)
         # load only roadlines since they solely contain speed limits
-        lane_graph = Helper.create_lane_graph(lane_graph)
-        if len(lane_graph) == 0: # there exists an empty lanegraph :p
-            return None
+        # lane_graph = Helper.create_lane_graph(lane_graph)
+        # if len(lane_graph) == 0: # there exists an empty lanegraph :p
+        #     return None
         
         # calucalte violations
         violation_lines, rule_values, flag_list, speed_limit_list = self.get_all_violations(state_list, lane_graph)
@@ -315,7 +317,9 @@ class VelocityRule:
     def rule_of_waymo(self):
         number_of_scenarios = 0
         start_time = time.time()
-        path_list = self.get_waymo_paths()
+        # path_list = self.get_waymo_paths()
+        with open('../scripts/paths.txt') as f:
+            path_list = f.readlines()
         degree_list = []
 
         if self.max_files == None:
@@ -491,7 +495,7 @@ class VelocityRule:
                         simulation.plot(box[0,:], box[1,:], linestyle="--", color="#DC267F", linewidth=1.5)
                     else:
                         if condition == 0:
-                            simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#FFB000", lw=1.3)
+                            simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#785EF0", lw=1.3)
                         if condition == 1:
                             simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#DC267F", lw=1.3)
                         if condition == 2:
@@ -499,7 +503,7 @@ class VelocityRule:
                         if condition == 3:
                             simulation.plot(box[0,:], box[1,:], linestyle="solid", color="black", lw=0.9)
                         if condition == 4:
-                            simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#785EF0", lw=0.8)
+                            simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#FFB000", lw=0.8)
 
             
             if plot_connection:
@@ -509,15 +513,21 @@ class VelocityRule:
 
             for lane in lane_graph:
                 polyline = lane[0][:,:2].T
-                simulation.plot(polyline[0,:], polyline[1,:], linestyle="dotted", color="k", lw=0.3)
+                simulation.plot(polyline[0,:], polyline[1,:], linestyle=(0, (40, 110)), color="k", lw=0.15)
+
+            for line in self.line_graph:
+                polyline = line[1][:,:2].T
+                simulation.plot(polyline[0,:], polyline[1,:], linestyle="solid", color="k", lw=0.48)
 
 
-            legend_elements = [Patch(facecolor='white', ls="solid", edgecolor='#FFB000', label='No violation'),
+            legend_elements = [Patch(facecolor='white', ls="solid", edgecolor='#785EF0', label='No violation'),
                    Patch(facecolor='white', ls="solid", edgecolor='#DC267F', label='Violation'),
                 #    Patch(facecolor='white', ls="solid", edgecolor='y', label='No speed_limit'),
                 #    Patch(facecolor='white', ls="solid", edgecolor='black', label='Extending distance'),
                    Patch(facecolor='white', ls="--", edgecolor='#DC267F', label='Worst Driver'),
-                   Patch(facecolor='white', ls="solid", edgecolor='#785EF0', label='Below min_speed')
+                   Patch(facecolor='white', ls="solid", edgecolor='#FFB000', label='Below min_speed'),
+                   Line2D([0], [0], color='k', linestyle="--", label='Center line', lw=1.5),
+                   Line2D([0], [0], color='k', linestyle="solid", label='Lane', lw=1.5)
                    ]
             simulation.legend(handles=legend_elements, loc="upper left", prop={'size': 13})
             
@@ -577,6 +587,9 @@ class VelocityRule:
         scenario = scenario_data[0]
         total_tracks = scenario.tracks
         lane_graph = list(scenario.map_features)
+        tt, self.line_graph, edge_graph = Helper.create_road_graph(lane_graph)
+        lane_graph = Helper.create_lane_graph(lane_graph)
+
 
 
         type_id = "1" # Id 1 == car
@@ -595,7 +608,7 @@ class VelocityRule:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", type=str, default="/disk/ml/datasets/waymo/motion/scenario/")
+    parser.add_argument("--path", type=str, default="/disk/ml/datasets/waymo/motion/scenario/training_20s/")
     parser.add_argument("--dist", type=float, default=10.0)
     parser.add_argument("--min_speed", type=float, default=0.8)
     parser.add_argument("--step_size", type=int, default=10)
@@ -618,7 +631,7 @@ if __name__ == "__main__":
         sample = False
 
     vr = VelocityRule(path=args.path, max_dist=args.dist, min_speed=args.min_speed, step_sequence=args.step_size, max_files=args.size, save_freq=args.save_freq, save_detail=s_detail)
-    if not sample:        
+    if not sample:       
         vr.rule_of_waymo()
         cr = CreateDistribution("Velocity")
         cr.generate_hist(vr.get_root_path())
