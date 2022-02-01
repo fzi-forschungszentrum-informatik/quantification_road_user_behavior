@@ -47,15 +47,6 @@ class VelocityRule:
         self.file_path = ""
         self.scenario_path = ""
 
-        # worst scenario filter
-        self.ws_path = ""
-        self.ws_id = None
-        self.ws_score = 9999999
-        # worst driver filter
-        self.wd_path = ""
-        self.wd_id = None
-        self.wd_score = 9999999
-
         self.line_graph = None
    
     def get_root_path(self):
@@ -608,7 +599,7 @@ class VelocityRule:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", type=str, default="/disk/ml/datasets/waymo/motion/scenario/training_20s/")
+    parser.add_argument("--path", type=str, default="../data/dataset/")#"/disk/ml/datasets/waymo/motion/scenario/"
     parser.add_argument("--dist", type=float, default=10.0)
     parser.add_argument("--min_speed", type=float, default=0.8)
     parser.add_argument("--step_size", type=int, default=10)

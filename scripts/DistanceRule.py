@@ -49,15 +49,6 @@ class DistanceRule:
         self.file_path = ""
         self.scenario_path = ""
 
-        # worst scenario filter
-        self.ws_path = ""
-        self.ws_id = None
-        self.ws_score = 9999999
-        # worst driver filter
-        self.wd_path = ""
-        self.wd_id = None
-        self.wd_score = 9999999
-
 
     def get_root_path(self):
         return self.root_path
@@ -421,89 +412,6 @@ class DistanceRule:
         score = np.sum(score_list) / number_of_scenarios # average rule score among the file
         return score, 
         
-    def mock_rule_Of_file(self, path):
-        score_list = []
-        scenario_data = Helper.load_Data(path)
-
-        file_name = path.split("/")
-        self.file_path = self.storage_path + file_name[-2] + "." + file_name[-1] + "/"
-        if not os.path.isdir(self.file_path) and self.save_detail:
-            os.mkdir(self.file_path)
-
-        pool = mp.Pool(mp.cpu_count())
-
-        results = []
-        results = pool.starmap(self.mock_for_parallel, [(x, scenario_data[x]) for x in range(len(scenario_data))])
-        # results = pool.starmap(self.for_parallel, [(x, scenario_data[x]) for x in range(240)])
-
-        pool.close()
-
-        for result in results:
-            if not result[0] == None:
-                score_list.append(result[0])
-                if not result[1] == None and result[1] < self.ws_score:
-                    self.ws_score = result[1]
-                    self.ws_id = result[2]
-                    self.ws_path = result[3]
-                if result[4] < self.wd_score:
-                    self.wd_score = result[4]
-                    self.wd_id = result[5]
-                    self.wd_path = result[6]
-
-        score_list = np.array(score_list)
-        #print(score_list)
-        number_of_scenarios = len(score_list)
-        score = np.sum(score_list) / number_of_scenarios # average rule score among the file
-        return score, number_of_scenarios
-    
-    # acceleration purpose only
-    def mock_for_parallel(self, index, scenario):
-        self.scenario_path = self.file_path + "scenario_" + self.convert_Index(index+1) + "/"
-        if not os.path.isdir(self.scenario_path) and self.save_detail:
-            os.mkdir(self.scenario_path)
-
-        total_tracks = scenario.tracks
-        type_id = "1" # Id 1 == car
-        vehicle_list = []
-
-        for track in total_tracks:
-            if str(track.object_type) == type_id:
-                vehicle_list.append(track)
-        
-        score_list = self.rule_Of_scenario(vehicle_list, False) # rule score of every driver among one scenario
-        score_list = np.array(score_list)
-        scenario_score = self.average_ex_nan(score_list) # average rule score among scenario
-
-        # worst scenario filter
-        ws_path = ""
-        ws_id = None
-        ws_score = 9999999
-        # worst driver filter
-        wd_path = ""
-        wd_id = None
-        wd_score = 9999999
-
-        if not scenario_score == None and scenario_score < self.ws_score:
-            ws_score = scenario_score
-            ws_id = index
-            ws_path = self.file_path
-
-        tmp = []
-        for x in range(len(score_list)):
-            if not np.isnan(score_list[x]):
-                tmp.append(score_list[x])
-                        
-        if len(tmp) > 0:
-            tmp = np.array(tmp)
-            worst_driver_score = min(tmp)
-            
-            if worst_driver_score < self.wd_score:
-                wd_score = worst_driver_score
-                wd_id = index
-                wd_path = self.file_path
-
-        return scenario_score, ws_score, ws_id, ws_path, wd_score, wd_id, wd_path
-
 
 # acceleration purpose only
     def for_parallel(self, index, scenario):
@@ -753,7 +661,7 @@ class DistanceRule:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", type=str, default="/disk/ml/datasets/waymo/motion/scenario/training_20s/")
+    parser.add_argument("--path", type=str, default="../data/dataset/")#"/disk/ml/datasets/waymo/motion/scenario/"
     parser.add_argument("--latency", type=float, default=3.0)
     parser.add_argument("--step_size", type=int, default=10)
     parser.add_argument("--min_speed", type=float, default=5.0)
