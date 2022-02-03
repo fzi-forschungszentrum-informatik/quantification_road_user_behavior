@@ -17,7 +17,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 <span style="font-size:larger;">
 
-📋  Distance Keeping: μ=0.867 σ=0.2
+📋  Safety Distance: μ=0.867 σ=0.2
  
 <details>
 
@@ -44,7 +44,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 <span style="font-size:larger;">
 
-📋 Speed Limitation: μ=0.967 σ=0.077
+📋 Speed Limits: μ=0.967 σ=0.077
 
 <details>
 
@@ -72,7 +72,7 @@ pip install --upgrade pip
 git clone https://github.com/daniel-bogdoll/actual_road_user_behavior.git
 pip install -r requirements.txt
 ```
-# Distance Keeping
+# Safety Distance
 For extracting the distance slack run:
 ```bash
 cd scripts
@@ -96,7 +96,7 @@ Visualization of a random file among the dataset:
 
 ![screen-gif](./media/Distance_noGrid_future.gif)
 
-# Speed Limitation
+# Speed Limits
 For extracting the Speed Limit slack run:
 ```bash
 cd scripts
