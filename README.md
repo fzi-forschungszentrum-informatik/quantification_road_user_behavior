@@ -6,8 +6,8 @@ Repository of the paper **[Quantification of Actual Road User Behavior on the Ba
 
 It provides two scripts to extract and learn the robustness slackness of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/dataset-motion/):
 
-* Distance keeping
-* Speed limitation
+* Safety Distance
+* Speed Limits
 
 Each slack is a percentage, that indicates how strongly a rule is followed among every driver in the dataset.
 
