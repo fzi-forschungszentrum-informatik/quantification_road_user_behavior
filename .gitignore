@@ -11,4 +11,4 @@ data/sample_plots/*/
 .nfs*
 notebooks/*
 *.mp4
-
+*.svg

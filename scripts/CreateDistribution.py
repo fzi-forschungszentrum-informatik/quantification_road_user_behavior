@@ -47,9 +47,11 @@ class CreateDistribution(object):
 
         pool.close()
 
-        print("Calculatetd individual states!")
+        if len(results) == 0:
+            print("### There are no saved results. Maybe you ran the code with flag --save_detail False. Thus we cant provide additional statistics! ###")
         results = np.array(results)
         results = np.concatenate(results)
+        print("Calculatetd individual states!")
         print("Stacked results!")
 
         # for state in file_list:

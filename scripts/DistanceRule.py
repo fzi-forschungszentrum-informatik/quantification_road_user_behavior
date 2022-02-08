@@ -376,7 +376,7 @@ class DistanceRule:
                 score_list.append(score)
         
         # save every state of the scenario
-        if self.save_detail and not test_mode:
+        if self.save_detail and self.save_detail and not test_mode:
             self.save_states(rule_stack.T, dist_stack, max_dist_stack, state_vel_list, np.array(score_list))
 
         # return differs inside testmode
@@ -391,7 +391,7 @@ class DistanceRule:
 
         file_name = path.split("/")
         self.file_path = self.storage_path + file_name[-2] + "." + file_name[-1] + "/"
-        if not os.path.isdir(self.file_path):
+        if not os.path.isdir(self.file_path) and self.save_detail:
             os.mkdir(self.file_path)
 
         pool = mp.Pool(mp.cpu_count())
@@ -410,13 +410,13 @@ class DistanceRule:
         #print(score_list)
         number_of_scenarios = len(score_list)
         score = np.sum(score_list) / number_of_scenarios # average rule score among the file
-        return score, 
+        return score, number_of_scenarios
         
 
 # acceleration purpose only
     def for_parallel(self, index, scenario):
         self.scenario_path = self.file_path + "scenario_" + self.convert_Index(index+1) + "/"
-        if not os.path.isdir(self.scenario_path):
+        if not os.path.isdir(self.scenario_path) and self.save_detail:
             os.mkdir(self.scenario_path)
 
         total_tracks = scenario.tracks
@@ -451,7 +451,7 @@ class DistanceRule:
         print("######## Start ########")
         for x in range(self.max_files):
         #for x in range(len(path_list)):
-            degree, num_scenario = self.mock_rule_Of_file(path_list[x])
+            degree, num_scenario = self.rule_Of_file(path_list[x])
             number_of_scenarios = number_of_scenarios + num_scenario
             degree_list.append(degree)
             total_degree = np.sum(degree_list) / len(degree_list)
@@ -480,8 +480,6 @@ class DistanceRule:
         file.write("Average score: " + str(total_degree) + " (" + str(num_files) + " files with " + str(number_of_scenarios) + " individual scenarios)")
         file.write("\nTime elapsed: " + str(time_elapsed) + " hours")
         file.write("\nSettings: Latency = " + str(self.latency) + " Step_sequence = " + str(self.step_sequence) + " Min speed = " + str(self.min_speed) + " Angle range = " + str(self.angle_range))
-        file.write("\nWorst scenario: path:" + self.ws_path + " index: " +str(self.ws_id) + " score: " + str(self.ws_score))
-        file.write("\nWorst driver: path:" + self.wd_path + " index: " + str(self.wd_id) + " score: " + str(self.wd_score))
         file.close() 
         
 # -------------------------------------------## Testing ##----------------------------------------------
@@ -557,9 +555,9 @@ class DistanceRule:
                         simulation.plot(box[0,:], box[1,:], linestyle="solid", color="#648FFF", linewidth=0.9)
 
             
-            # for line in viol_list:
-            #     line = line.T
-            #     simulation.plot(line[0,:], line[1,:], linestyle="solid", color="#DC267F", lw=1.75)
+            for line in viol_list:
+                line = line.T
+                simulation.plot(line[0,:], line[1,:], linestyle="solid", color="#DC267F", lw=1.75)
 
             if future:
                 for line in line_future:
@@ -582,8 +580,8 @@ class DistanceRule:
             
             x_pos = focus_p[0]
             y_pos = focus_p[1]
-            x_pos = 3369.0667
-            y_pos = 1542.3281
+            # x_pos = 3369.0667
+            # y_pos = 1542.3281
             simulation.set_xlim(x_pos - 50, x_pos + 50)
             simulation.set_ylim(y_pos - 50, y_pos + 50)
             # simulation.set_title("Rule: Distance Keeping")

@@ -231,9 +231,9 @@ class VelocityRule:
         # state list of [car_center, velocity]
         state_list = self.formatVelocity(all_state_list)
         # load only roadlines since they solely contain speed limits
-        # lane_graph = Helper.create_lane_graph(lane_graph)
-        # if len(lane_graph) == 0: # there exists an empty lanegraph :p
-        #     return None
+        lane_graph = Helper.create_lane_graph(lane_graph)
+        if len(lane_graph) == 0: # there exists an empty lanegraph :p
+            return None
         
         # calucalte violations
         violation_lines, rule_values, flag_list, speed_limit_list = self.get_all_violations(state_list, lane_graph)
@@ -308,9 +308,8 @@ class VelocityRule:
     def rule_of_waymo(self):
         number_of_scenarios = 0
         start_time = time.time()
-        # path_list = self.get_waymo_paths()
-        with open('../scripts/paths.txt') as f:
-            path_list = f.readlines()
+        path_list = self.get_waymo_paths()
+
         degree_list = []
 
         if self.max_files == None:
@@ -579,7 +578,7 @@ class VelocityRule:
         total_tracks = scenario.tracks
         lane_graph = list(scenario.map_features)
         tt, self.line_graph, edge_graph = Helper.create_road_graph(lane_graph)
-        lane_graph = Helper.create_lane_graph(lane_graph)
+        # lane_graph = Helper.create_lane_graph(lane_graph)
 
 
 
