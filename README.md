@@ -6,8 +6,8 @@ Repository of the paper **[Quantification of Actual Road User Behavior on the Ba
 
 It provides two scripts to extract and learn the robustness slackness of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/dataset-motion/):
 
-* Safety Distance
-* Speed Limits
+* Distance keeping
+* Speed limitation
 
 Each slack is a percentage, that indicates how strongly a rule is followed among every driver in the dataset.
 
@@ -17,7 +17,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 <span style="font-size:larger;">
 
-📋  Safety Distance: μ=0.867 σ=0.2
+📋  Distance Keeping: μ=0.867 σ=0.2
  
 <details>
 
@@ -44,7 +44,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 <span style="font-size:larger;">
 
-📋 Speed Limits: μ=0.967 σ=0.077
+📋 Speed Limitation: μ=0.967 σ=0.077
 
 <details>
 
@@ -69,10 +69,10 @@ Detailed description of the underlying rules [here](https://google.com/)
 Install inside of a virtual environment (recommended)
 ```bash
 pip install --upgrade pip
-git clone https://github.com/daniel-bogdoll/actual_road_user_behavior.git
+git clone https://github.com/MoritzNekolla/actual_road_user_behavior.git
 pip install -r requirements.txt
 ```
-# Safety Distance
+# Distance Keeping
 For extracting the distance slack run:
 ```bash
 cd scripts
@@ -96,7 +96,7 @@ Visualization of a random file among the dataset:
 
 ![screen-gif](./media/Distance_noGrid_future.gif)
 
-# Speed Limits
+# Speed Limitation
 For extracting the Speed Limit slack run:
 ```bash
 cd scripts
