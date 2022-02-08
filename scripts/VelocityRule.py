@@ -531,7 +531,7 @@ class VelocityRule:
             # simulation.set_title("Rule: Speed limit", fontsize=17)
 
 
-            fig.savefig("test" + str(index) + ".svg", bbox_inches='tight', pad_inches = 0)
+            # fig.savefig("test" + str(index) + ".svg", bbox_inches='tight', pad_inches = 0)
             # return simulation
         
         

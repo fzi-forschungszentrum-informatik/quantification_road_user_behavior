@@ -598,7 +598,7 @@ class DistanceRule:
             simulation.legend(handles=legend_elements, loc="upper left", prop={'size': 13})
             
 
-            fig.savefig("test" + str(index) + ".svg", bbox_inches='tight', pad_inches = 0)
+            # fig.savefig("test" + str(index) + ".svg", bbox_inches='tight', pad_inches = 0)
             return simulation
         
         
@@ -659,7 +659,7 @@ class DistanceRule:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--path", type=str, default="../data/dataset/")#"/disk/ml/datasets/waymo/motion/scenario/"
+    parser.add_argument("--path", type=str, default="../data/dataset/") #"/disk/ml/datasets/waymo/motion/scenario/"
     parser.add_argument("--latency", type=float, default=3.0)
     parser.add_argument("--step_size", type=int, default=10)
     parser.add_argument("--min_speed", type=float, default=5.0)
