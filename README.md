@@ -69,7 +69,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 Install inside of a virtual environment (recommended)
 ```bash
 pip install --upgrade pip
-git clone https://github.com/MoritzNekolla/actual_road_user_behavior.git
+git clone https://github.com/fzi-forschungszentrum-informatik/quantification_road_user_behavior.git
 pip install -r requirements.txt
 ```
 # Distance Keeping
