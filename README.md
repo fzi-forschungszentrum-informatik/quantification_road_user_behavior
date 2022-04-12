@@ -126,10 +126,10 @@ Visualization of a random file among the dataset:
 If you are using this Rule extractor for scientific research, we would be pleased if you would cite our [publication](http://google.com/):
 
 ```latex
-@inproceedings{Rule extractor,
-  title     = {{Quantification} {of} {Actual} {Road} {User} {Behavior} {on} {the} {Basis} {of} {Given} {Traffic} {Rules}},
-  author    = {Moritz Nekolla and Daniel Bogdoll},
-  year      = {2021},
-  Url={http://google.com/}
+@article{Bogdoll_Quantification_2022_IV,
+  author    = {Bogdoll, Daniel and Nekolla, Moritz and Joseph, Tim and Z\"{o}llner, J. Marius},
+  title     = {{Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules}},
+  journal   = {arXiv preprint:2202.09269},
+  year      = {2022}
 }
 ```
