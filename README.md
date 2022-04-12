@@ -2,11 +2,11 @@
 
 ## Code and supplementary materials
 
-Repository of the paper **[Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules]()** at [IV 2022](https://iv2022.com/). I am a strong supporter of the [Public Money, Public Code](https://publiccode.eu/) idea and happy to contribute to it with this repository. 
+Repository of the paper **[Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules](https://arxiv.org/abs/2202.09269)** at [IV 2022](https://iv2022.com/). The authors are strong supporters of the [Public Money, Public Code](https://publiccode.eu/) idea and happy to contribute to it with this repository. 
 
 It provides two scripts to extract and learn the robustness slackness of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/dataset-motion/):
 
-* Distance keeping
+* Distance keepingr
 * Speed limitation
 
 Each slack is a percentage, that indicates how strongly a rule is followed among every driver in the dataset.
