@@ -123,7 +123,7 @@ Visualization of a random file among the dataset:
 
 # Citation
 
-If you are using this Rule extractor for scientific research, we would be pleased if you would cite our [publication](http://google.com/):
+If you are using this Rule extractor for scientific research, we would be pleased if you would cite our [publication](https://arxiv.org/abs/2202.09269):
 
 ```latex
 @article{Bogdoll_Quantification_2022_IV,
