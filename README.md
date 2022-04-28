@@ -4,20 +4,19 @@
 
 Repository of the paper **[Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules](https://arxiv.org/abs/2202.09269)** at [IV 2022](https://iv2022.com/). The first authors are strong supporters of the [Public Money, Public Code](https://publiccode.eu/) idea and happy to contribute to it with this repository. 
 
-It provides two scripts to extract and learn the rule conformity of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/dataset-motion/):
+It provides two scripts to extract and learn the rule conformity of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/open/data/motion/):
 
 * Distance keepingr
 * Speed limitation
 
 Each rule conformity is a percentage, that indicates how strongly a rule is followed among every driver in the dataset.
 
-Detailed description of the underlying rules [here](https://google.com/)
 
 # Results of both rules:
 
 <span style="font-size:larger;">
 
-📋  Distance Keeping: μ=0.867 σ=0.2
+📋  Distance Keeping average rule conformity: 0.867
  
 <details>
 
@@ -44,7 +43,7 @@ Detailed description of the underlying rules [here](https://google.com/)
 
 <span style="font-size:larger;">
 
-📋 Speed Limitation: μ=0.967 σ=0.077
+📋 Speed Limitation average rule conformity: 0.967
 
 <details>
 
