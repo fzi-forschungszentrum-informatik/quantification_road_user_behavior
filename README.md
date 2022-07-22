@@ -6,7 +6,7 @@ Repository of the paper **[Quantification of Actual Road User Behavior on the Ba
 
 It provides two scripts to extract and learn the rule conformity of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/open/data/motion/):
 
-* Distance keepingr
+* Distance keeping
 * Speed limitation
 
 Each rule conformity is a percentage, that indicates how strongly a rule is followed among every driver in the dataset.
