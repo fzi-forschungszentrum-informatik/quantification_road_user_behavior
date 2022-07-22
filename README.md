@@ -101,7 +101,7 @@ For extracting the Speed Limit rule conformity run:
 cd scripts
 python VelocityRule.py --path path/to/dataset
 ```
-which provides follwoing flags:
+which provides the following flags:
 
 |Flag|Description|Default|
 |---|---|---|
