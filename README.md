@@ -77,7 +77,7 @@ For extracting the distance rule conformity run:
 cd scripts
 python DistanceRule.py --path path/to/dataset
 ```
-which provides follwoing flags:
+which provides the following flags:
 
 |Flag|Description|Default|
 |---|---|---|
