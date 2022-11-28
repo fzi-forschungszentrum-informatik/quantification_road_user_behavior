@@ -2,7 +2,7 @@
 
 ## Code and supplementary materials
 
-Repository of the paper **[Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules](https://arxiv.org/abs/2202.09269)** at [IV 2022](https://iv2022.com/). The first authors are strong supporters of the [Public Money, Public Code](https://publiccode.eu/) idea and happy to contribute to it with this repository. 
+Repository of the paper **[Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules](https://ieeexplore.ieee.org/document/9827082)** at [IV 2022](https://iv2022.com/). The first authors are strong supporters of the [Public Money, Public Code](https://publiccode.eu/) idea and happy to contribute to it with this repository. 
 
 It provides two scripts to extract and learn the rule conformity of two traffic rules out of the [Waymo Open Dataset Motion](https://waymo.com/intl/en_us/open/data/motion/):
 
@@ -125,10 +125,10 @@ Visualization of a random file among the dataset:
 If you find this code useful for your research, please cite our paper:
 
 ```latex
-@article{Bogdoll_Quantification_2022_IV,
+@InProceedings{Bogdoll_Quantification_2022_IV,
   author    = {Bogdoll, Daniel and Nekolla, Moritz and Joseph, Tim and Z\"{o}llner, J. Marius},
   title     = {{Quantification of Actual Road User Behavior on the Basis of Given Traffic Rules}},
-  journal   = {arXiv preprint:2202.09269},
+  booktitle = {IEEE Intelligent Vehicles Symposium (IV)},
   year      = {2022}
 }
 ```
